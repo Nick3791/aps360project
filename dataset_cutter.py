@@ -14,17 +14,20 @@ out_file = open(output_filename, 'w', newline='')
 csv_reader = csv.reader(in_file, delimiter=',')
 csv_writer = csv.writer(out_file, delimiter=',')
 
-# This represents the columns of the dataset
 header = next(csv_reader)
 
 # Write the header
 csv_writer.writerow(header)
 
-data = []
-for i in range(0, 100):
-    data.append(next(csv_reader))
+vals = []
 
-csv_writer.writerows(data)
+# This represents the columns of the dataset
+for row, data in enumerate(csv_reader):
+    if (row > 100):
+        break
+    vals.append([row, data[3]])
+
+csv_writer.writerows(vals)
 
 in_file.close()
 out_file.close()
