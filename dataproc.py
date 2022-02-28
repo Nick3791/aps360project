@@ -30,3 +30,11 @@ def datasplit(startrow, endrow, output_filename):
 
     in_file.close()
     out_file.close()
+
+# Training, test and validation splits: 70/15/15
+# Training rows: 0.7*2231142 = 1561800
+# Test rows: 0.15*2231142 = 334671
+# Validation rows: 0.15*2231142 = 334671
+datasplit(0,1561800,'train_set')
+datasplit(1561800,1896471,'val_set')
+datasplit(1896471,2231142,'test_set')
