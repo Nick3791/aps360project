@@ -16,7 +16,7 @@ def datasplit(startrow, endrow, output_filename):
     header = next(csv_reader)
 
     # Write the header
-    csv_writer.writerow(header)
+    csv_writer.writerow(header[:4])
 
     vals = []
 
@@ -24,7 +24,7 @@ def datasplit(startrow, endrow, output_filename):
     for row, data in enumerate(csv_reader, start=startrow):
         if (row > endrow):
             break
-        vals.append(data)
+        vals.append(data[:4])
 
     csv_writer.writerows(vals)
 
