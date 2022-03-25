@@ -7,7 +7,7 @@ import csv
 output_filename = 'RecipeNLG_cropped.csv'
 
 # Open the input and output files
-in_file = open('RecipeNLG_dataset.csv', 'r')
+in_file = open('RecipeNLG_dataset.csv', 'r', encoding='utf8')
 out_file = open(output_filename, 'w', newline='')
 
 # Setup the reader writer objects
@@ -20,12 +20,22 @@ header = next(csv_reader)
 csv_writer.writerow(header)
 
 vals = []
+max = 0
+max_str = ' '
 
 # This represents the columns of the dataset
 for row, data in enumerate(csv_reader):
-    if (row > 100):
-        break
-    vals.append([row, data[3]])
+    #if (row > 50000):
+    #    break
+    #new = (data[3]).encode("ascii", "ignore")
+    #new = new.decode()
+    #vals.append([row, new])
+    if len(data[3]) > max:
+        max = len(data[3])
+        max_str = data[3]
+
+print(max)
+print(max_str)
 
 csv_writer.writerows(vals)
 
